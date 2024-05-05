@@ -1,0 +1,21 @@
+{
+  "metadata": [
+    {
+      "description": 1,
+      "denom_units": [
+        {
+          "denom": "aevt",
+          "exponent": 0
+        },
+        {
+          "denom": "evt",
+          "exponent": 18
+        }
+      ],
+      "base": "aevt",
+      "display": "aevt",
+      "name": "aevt",
+      "symbol": "evt"
+    }
+  ]
+}
