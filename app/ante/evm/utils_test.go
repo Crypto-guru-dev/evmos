@@ -35,7 +35,7 @@ import (
 	"github.com/evmos/evmos/v12/crypto/ethsecp256k1"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
-	evtypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
+	byteypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
 	"github.com/cosmos/cosmos-sdk/x/feegrant"
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
@@ -273,7 +273,7 @@ func (suite *AnteTestSuite) CreateTestEIP712MsgEditValidator(from sdk.AccAddress
 
 func (suite *AnteTestSuite) CreateTestEIP712MsgSubmitEvidence(from sdk.AccAddress, priv cryptotypes.PrivKey, chainID string, gas uint64, gasAmount sdk.Coins) (client.TxBuilder, error) {
 	pk := ed25519.GenPrivKey()
-	msgEvidence, err := evtypes.NewMsgSubmitEvidence(from, &evtypes.Equivocation{
+	msgEvidence, err := byteypes.NewMsgSubmitEvidence(from, &byteypes.Equivocation{
 		Height:           11,
 		Time:             time.Now().UTC(),
 		Power:            100,

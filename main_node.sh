@@ -1,17 +1,17 @@
 #!/bin/bash
 
-KEYS[0]="EvtFoundation"
+KEYS[0]="BEXCFoundation"
 
-CHAINID="evt_8848-1"
-MONIKER="evtteam"
+CHAINID="byte_1919-1"
+MONIKER="byteteam"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
 # The keyring test does not require private key to steal tokens from you
 KEYRING="os"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the evtd instance
-HOMEDIR="$HOME/.evtd"
+# Set dedicated home directory for the byted instance
+HOMEDIR="$HOME/.byted"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
@@ -48,24 +48,24 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	rm -rf "$HOMEDIR"
 
 	# Set client config
-	evtd config keyring-backend $KEYRING --home "$HOMEDIR"
-	evtd config chain-id $CHAINID --home "$HOMEDIR"
+	byted config keyring-backend $KEYRING --home "$HOMEDIR"
+	byted config chain-id $CHAINID --home "$HOMEDIR"
 
 	# If keys exist they should be deleted
 	for KEY in "${KEYS[@]}"; do
-		evtd keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR" 
+		byted keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --home "$HOMEDIR" 
 	done
 
 	# Set moniker and chain-id for Evmos (Moniker can be anything, chain-id must be an integer)
-	evtd init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
+	byted init $MONIKER -o --chain-id $CHAINID --home "$HOMEDIR"
 
-	# Change parameter token denominations to evt
-	jq '.app_state["staking"]["params"]["bond_denom"]="aevt"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["crisis"]["constant_fee"]["denom"]="aevt"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="aevt"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	# Change parameter token denominations to byte
+	jq '.app_state["staking"]["params"]["bond_denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["crisis"]["constant_fee"]["denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 	jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["amount"]="1000000000000000000000"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["evm"]["params"]["evm_denom"]="aevt"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
-	jq '.app_state["inflation"]["params"]["mint_denom"]="aevt"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["evm"]["params"]["evm_denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
+	jq '.app_state["inflation"]["params"]["mint_denom"]="abyte"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 	jq '.app_state["feemarket"]["block_gas"]="20000000"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 	jq '.app_state["feemarket"]["params"]["min_gas_price"]="0.001"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 	jq '.consensus_params["block"]["max_gas"]="20000000000"' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
@@ -96,19 +96,19 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	sed -i 's/cors_allowed_origins = \[\]/cors_allowed_origins = \["*"\]/g' "$CONFIG"
 	sed -i 's/laddr = "tcp:\/\/127.0.0.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/g' "$CONFIG"
 
-	sed -i 's/address = "127.0.0.1:8545"/address = "0.0.0.0:8545"/g' ~/.evtd/config/app.toml
-	sed -i 's/ws-address = "127.0.0.1:8546"/ws-address = "0.0.0.0:8546"/g' ~/.evtd/config/app.toml
+	sed -i 's/address = "127.0.0.1:8545"/address = "0.0.0.0:8545"/g' ~/.byted/config/app.toml
+	sed -i 's/ws-address = "127.0.0.1:8546"/ws-address = "0.0.0.0:8546"/g' ~/.byted/config/app.toml
 	
-	sed -i '/\[api\]/,+3 s/enable = false/enable = true/' ~/.evtd/config/app.toml
-	sed -i 's/swagger = false/swagger = true/g' ~/.evtd/config/app.toml
-	sed -i 's/enabled-unsafe-cors = false/enabled-unsafe-cors = true/g'  ~/.evtd/config/app.toml
-	# sed -i 's/enable-indexer = false/enable-indexer = true/g' ~/.evtd/config/app.toml
-	sed -i 's/api = "eth,net,web3"/api = "eth,txpool,personal,net,debug,web3,pubsub,trace"/g' ~/.evtd/config/app.toml
-	sed -i 's/pruning = "default"/pruning = "nothing"/g' ~/.evtd/config/app.toml
+	sed -i '/\[api\]/,+3 s/enable = false/enable = true/' ~/.byted/config/app.toml
+	sed -i 's/swagger = false/swagger = true/g' ~/.byted/config/app.toml
+	sed -i 's/enabled-unsafe-cors = false/enabled-unsafe-cors = true/g'  ~/.byted/config/app.toml
+	# sed -i 's/enable-indexer = false/enable-indexer = true/g' ~/.byted/config/app.toml
+	sed -i 's/api = "eth,net,web3"/api = "eth,txpool,personal,net,debug,web3,pubsub,trace"/g' ~/.byted/config/app.toml
+	sed -i 's/pruning = "default"/pruning = "nothing"/g' ~/.byted/config/app.toml
 
 	# Allocate genesis accounts (cosmos formatted addresses)
 	
-	evtd add-genesis-account ${KEYS[0]} 10000000000000000000000000aevt --keyring-backend $KEYRING --home "$HOMEDIR"
+	byted add-genesis-account ${KEYS[0]} 10000000000000000000000000abyte --keyring-backend $KEYRING --home "$HOMEDIR"
 
 
 	# bc is required to add these big numbers
@@ -117,21 +117,21 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 
 
 	# Sign genesis transaction
-	evtd gentx ${KEYS[0]} 1000000000000000000000aevt --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"  --min-self-delegation 10000 --fees 20000aevt
+	byted gentx ${KEYS[0]} 1000000000000000000000abyte --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"  --min-self-delegation 10000 --fees 20000abyte
 
 
 
 	# Collect genesis tx
-	evtd collect-gentxs --home "$HOMEDIR"
+	byted collect-gentxs --home "$HOMEDIR"
 
 	# Run this to ensure everything worked and that the genesis file is setup correctly
-	evtd validate-genesis --home "$HOMEDIR"
+	byted validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
 	fi
 fi
 
-#evtd start --pruning=nothing "$TRACE"  --minimum-gas-prices=0.0001aevt --rpc.laddr tcp://0.0.0.0:26657 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
+#byted start --pruning=nothing "$TRACE"  --minimum-gas-prices=0.0001abyte --rpc.laddr tcp://0.0.0.0:26657 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
 
-# evtd start --pruning=nothing "$TRACE"  --rpc.laddr tcp://0.0.0.0:26657 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
+# byted start --pruning=nothing "$TRACE"  --rpc.laddr tcp://0.0.0.0:26657 --log_level $LOGLEVEL --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"

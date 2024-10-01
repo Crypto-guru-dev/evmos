@@ -83,9 +83,9 @@ func (b *Backend) BaseFee(blockRes *tmrpctypes.ResultBlockResults) (*big.Int, er
 		// in either case, we'll fallback to parsing from begin blocker event,
 		// faster to iterate reversely
 		for i := len(blockRes.BeginBlockEvents) - 1; i >= 0; i-- {
-			evt := blockRes.BeginBlockEvents[i]
-			if evt.Type == feemarkettypes.EventTypeFeeMarket && len(evt.Attributes) > 0 {
-				baseFee, err := strconv.ParseInt(string(evt.Attributes[0].Value), 10, 64)
+			byte := blockRes.BeginBlockEvents[i]
+			if byte.Type == feemarkettypes.EventTypeFeeMarket && len(byte.Attributes) > 0 {
+				baseFee, err := strconv.ParseInt(string(byte.Attributes[0].Value), 10, 64)
 				if err == nil {
 					return big.NewInt(baseFee), nil
 				}

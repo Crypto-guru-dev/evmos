@@ -33,7 +33,7 @@ func main() {
 
 	rootCmd, _ := NewRootCmd()
 
-	if err := svrcmd.Execute(rootCmd, "evtd", app.DefaultNodeHome); err != nil {
+	if err := svrcmd.Execute(rootCmd, "byted", app.DefaultNodeHome); err != nil {
 		switch e := err.(type) {
 		case server.ErrorCode:
 			os.Exit(e.Code)

@@ -64,14 +64,14 @@ func (m *Manager) CreateSubmitProposalExec(targetVersion, chainID string, upgrad
 		proposalType = "submit-proposal"
 	}
 	cmd := []string{
-		"evtd",
+		"byted",
 		"tx",
 		"gov",
 		proposalType,
 		"software-upgrade",
 		targetVersion,
 		"--title=\"TEST\"",
-		"--deposit=10000000aevt",
+		"--deposit=10000000abyte",
 		"--description=\"Test upgrade proposal\"",
 		fmt.Sprintf("--upgrade-height=%d", upgradeHeight),
 		upgradeInfo,
@@ -91,19 +91,19 @@ func (m *Manager) CreateSubmitProposalExec(targetVersion, chainID string, upgrad
 // CreateDepositProposalExec creates a gov tx to deposit for the proposal with the given id
 func (m *Manager) CreateDepositProposalExec(chainID string, id int) (string, error) {
 	cmd := []string{
-		"evtd",
+		"byted",
 		"tx",
 		"gov",
 		"deposit",
 		fmt.Sprint(id),
-		"10000000aevt",
+		"10000000abyte",
 		"--from=mykey",
 		fmt.Sprintf("--chain-id=%s", chainID),
 		"-b=block",
 		"--yes",
 		"--keyring-backend=test",
 		"--log_format=json",
-		"--fees=500aevt",
+		"--fees=500abyte",
 		"--gas=500000",
 	}
 
@@ -113,7 +113,7 @@ func (m *Manager) CreateDepositProposalExec(chainID string, id int) (string, err
 // CreateVoteProposalExec creates gov tx to vote 'yes' on the proposal with the given id
 func (m *Manager) CreateVoteProposalExec(chainID string, id int, flags ...string) (string, error) {
 	cmd := []string{
-		"evtd",
+		"byted",
 		"tx",
 		"gov",
 		"vote",

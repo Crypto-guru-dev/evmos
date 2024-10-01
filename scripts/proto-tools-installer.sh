@@ -137,7 +137,7 @@ f_install_clang_format() {
                 elif [ -e /etc/fedora-release ]; then
                 echo -e "\tRun: sudo dnf install clang" >&2
             else
-                echo -e "\tRun (as root): subscription-manager repos --enable rhel-7-server-devtools-rpms ; yum install llvm-toolset-7" >&2
+                echo -e "\tRun (as root): subscription-manager repos --enable rhel-7-server-dbyteools-rpms ; yum install llvm-toolset-7" >&2
             fi
         ;;
         Darwin)

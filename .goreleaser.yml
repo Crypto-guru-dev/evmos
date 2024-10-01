@@ -3,9 +3,9 @@ before:
     - go mod download
 
 builds:
-  - id: "evtd-darwin"
-    main: ./cmd/evtd
-    binary: bin/evtd
+  - id: "byted-darwin"
+    main: ./cmd/byted
+    binary: bin/byted
     env:
       - CGO_ENABLED=1
       - CC=o64-clang
@@ -17,10 +17,10 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=evtd -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "evtd-darwin-arm64"
-    main: ./cmd/evtd
-    binary: bin/evtd
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=byted -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "byted-darwin-arm64"
+    main: ./cmd/byted
+    binary: bin/byted
     env:
       - CGO_ENABLED=1
       - CC=oa64-clang
@@ -32,10 +32,10 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=evtd -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "evtd-linux"
-    main: ./cmd/evtd
-    binary: bin/evtd
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=byted -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "byted-linux"
+    main: ./cmd/byted
+    binary: bin/byted
     env:
       - CGO_ENABLED=1
       - CC=gcc
@@ -47,10 +47,10 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=evtd -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "evtd-linux-arm64"
-    main: ./cmd/evtd
-    binary: bin/evtd
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=byted -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "byted-linux-arm64"
+    main: ./cmd/byted
+    binary: bin/byted
     env:
       - CGO_ENABLED=1
       - CC=aarch64-linux-gnu-gcc
@@ -62,10 +62,10 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=evtd -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "evtd-windows"
-    main: ./cmd/evtd
-    binary: bin/evtd
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=byted -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "byted-windows"
+    main: ./cmd/byted
+    binary: bin/byted
     env:
       - CGO_ENABLED=1
       - CC=x86_64-w64-mingw32-gcc
@@ -78,7 +78,7 @@ builds:
       - -tags=cgo
       - -buildmode=exe
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=evtd -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=evmos -X github.com/cosmos/cosmos-sdk/version.AppName=byted -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
 
 archives:
   - name_template: '{{ .ProjectName }}_{{ .Version }}_{{- title .Os }}_{{ .Arch }}'
@@ -86,11 +86,11 @@ archives:
       - goos: windows
         format: zip
     builds:
-      - evtd-darwin
-      - evtd-darwin-arm64
-      - evtd-windows
-      - evtd-linux
-      - evtd-linux-arm64
+      - byted-darwin
+      - byted-darwin-arm64
+      - byted-windows
+      - byted-linux
+      - byted-linux-arm64
   
 checksum:
   name_template: 'checksums.txt'

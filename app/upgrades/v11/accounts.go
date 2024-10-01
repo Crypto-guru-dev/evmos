@@ -3914,7 +3914,7 @@ var Allocations = [1183][3]string{
 		"evmosvaloper1jxruqmfurgxrem4phvaqxkvprxa6fr0ncg3t88",
 	},
 	{
-		"evmos1pxl8wdhk52led576hw6kf4en5lcevt5l308cr5",
+		"evmos1pxl8wdhk52led576hw6kf4en5lcbyte5l308cr5",
 		"1660516604999999946752",
 		"evmosvaloper1cw8035q5dh9yc5gmk9zzt6k2ven0w292uuk96v",
 	},

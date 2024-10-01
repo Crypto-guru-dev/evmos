@@ -22,10 +22,10 @@ WORKDIR /
 RUN apt-get update
 
 # Copy over binaries from the build-env
-COPY --from=build-env /go/src/github.com/evmos/evmos/build/evtd /
+COPY --from=build-env /go/src/github.com/evmos/evmos/build/byted /
 COPY --from=build-env /go/src/github.com/evmos/evmos/scripts/start-docker.sh /
 
 EXPOSE 26656 26657 1317 9090 8545 8546
 
-# Run evtd by default, omit entrypoint to ease using container with evtd
+# Run byted by default, omit entrypoint to ease using container with byted
 ENTRYPOINT ["/bin/bash", "-c"]

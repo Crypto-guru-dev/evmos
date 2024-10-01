@@ -476,7 +476,7 @@ var Accounts = [2145][2]string{
 	{"evmos16xave7g2ruzp4y2h6702rfh5s5g8txamvkvlj7", "1100000000000000"},
 	{"evmos16xewnf0eq2uhgw98p45mvwqch0w6wp6g9f5j3f", "1100000000000000"},
 	{"evmos16xp5mg3q0duq36kd7t4vfj43cm78hmresce86z", "91767008167085735936"},
-	{"evmos16ydvhwtxcs34y4ty8waun6qscurr8gllevt89y", "7475791850719459342"},
+	{"evmos16ydvhwtxcs34y4ty8waun6qscurr8gllbyte89y", "7475791850719459342"},
 	{"evmos16yna2mkpzqy843y5qehqs9ej8hpgzzrzj3v6rf", "1100000000000000"},
 	{"evmos16z4cj4wkpjfuqgcst0flhudzv3q5my2eu8uw9y", "1100000000000000"},
 	{"evmos16zerlrnddu8mshd048rd9hz20aecfxeea3dur4", "1100000000000000"},

@@ -4,18 +4,18 @@
       "description": "The native staking and governance token of the Evmos chain",
       "denom_units": [
         {
-          "denom": "aevt",
+          "denom": "abyte",
           "exponent": 0
         },
         {
-          "denom": "evt",
+          "denom": "byte",
           "exponent": 18
         }
       ],
-      "base": "aevt",
-      "display": "aevt",
-      "name": "aevt",
-      "symbol": "evt"
+      "base": "abyte",
+      "display": "abyte",
+      "name": "abyte",
+      "symbol": "byte"
     },
     {
       "description": "The native staking and governance token of the Osmosis chain",

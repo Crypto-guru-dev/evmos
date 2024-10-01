@@ -1,4 +1,4 @@
 all:
-	docker build --no-cache --tag evt/node ../.. -f evt/Dockerfile
+	docker build --no-cache --tag byte/node ../.. -f byte/Dockerfile
 
 .PHONY: all
